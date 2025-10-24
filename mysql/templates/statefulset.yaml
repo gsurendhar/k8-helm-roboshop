@@ -14,7 +14,7 @@ spec:
       project: roboshop
       tier: database
   serviceName: "mysql-headless"  # this should be headless service
-  replicas: 3
+  replicas: {{ .Values.statefulset.replicas }}
   template:
     metadata:
       labels:
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: gsurendhar/mysql:v1
+        image: "{{ .Values.statefulset.imageURL }}:{{ .Values.statefulset.imageVersion }}"
         envFrom:
         - secretRef:
             name: mysql
