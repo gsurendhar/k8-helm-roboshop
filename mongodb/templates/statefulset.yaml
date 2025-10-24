@@ -14,7 +14,7 @@ spec:
       project: roboshop
       tier: database
   serviceName: "mongodb-headless"  # this should be headless service
-  replicas: 3
+  replicas: {{ .Values.statefulset.replicas }}
   template:
     metadata:
       labels:
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: "{{ .Values.statefulset.imageURL}}:{{ .Values.statefulset.imageVersion}}"
+        image: "{{ .Values.statefulset.imageURL }}:{{ .Values.statefulset.imageVersion }}"
         volumeMounts: 
         - name: mongodb-data
           mountPath: /data/db 
